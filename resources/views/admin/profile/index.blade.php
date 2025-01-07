@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h1>Profile Information</h1>
-            <a class="btn btn-secondary btn-sm ml-auto" href="/admin">
+            <a class="btn btn-secondary btn-sm ml-auto" href="/dashboard">
                 <i class="fa-solid fa-backward mr-1"></i>Back
             </a>
         </div>

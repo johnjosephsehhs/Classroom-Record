@@ -16,8 +16,8 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            @if ( Session::get('USERIMG') == Null )
-            <img src="{{ asset('/img/Admin.png') }}" alt="Profile Image Placeholder" class="img-profile rounded-circle w-25">
+            @if ( Session::get('USERIMG') == NULL )
+            <img src="{{ asset('img/Admin.png') }}" alt="Profile Image Placeholder" class="img-profile rounded-circle w-25">
         @else 
             <img src="{{ asset('storage/' . Session::get('USERIMG')) }}" class="img-profile rounded-circle w-25">
         @endif 
