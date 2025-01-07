@@ -12,7 +12,6 @@
     </div>
     <div class="card-body mt-2">
         <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
-        <form action="{{ route('users.update', $user->id) }}" method="POST">
             @csrf
             @method('PUT') 
             <div class="form-group">
