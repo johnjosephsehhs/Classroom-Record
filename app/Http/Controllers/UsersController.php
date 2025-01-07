@@ -14,9 +14,17 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::all(); 
+        // Get the currently logged-in user
+        $currentUser = auth()->user();
+
+        // Get all users except the currently logged-in user
+        $users = User::where('id', '!=', $currentUser->id)->get(); 
+
+        // Return the view with the updated users list
         return view('admin.users.index', compact('users'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -188,11 +196,35 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    // public function destroy($id)
+    // {
+    //     $user = User::findOrFail($id); 
+    //     $user->delete(); 
+
+    //     return redirect()->route('users.index')->with('success', 'User deleted successfully!');
+    // }
+
     public function destroy($id)
     {
-        $user = User::findOrFail($id); 
-        $user->delete(); 
-
-        return redirect()->route('users.index')->with('success', 'User deleted successfully!');
+        $deleteUser = User::findOrFail($id);
+        $userName = $deleteUser->first_name;
+        $deleteUser->destroy($id);
+        
+        if($deleteUser){
+            return response()->json(['message' => $userName .' deleted successfully']);
+        } else {
+            return response()->json(['error' => 'Deletion failed!']);
+        }
     }
+
+
+    public function list()
+    {
+        $users = User::all();
+
+        return response()->json($users);
+    }
+
+
 }

@@ -5,16 +5,8 @@
   <script src="{{ asset('js/bootstrap.bundle.min.js')}}"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-  {{-- <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> --}}
-  {{-- <script src="assets/vendor/chart.js/chart.umd.js"></script>
-  <script src="assets/vendor/echarts/echarts.min.js"></script>
-  <script src="assets/vendor/quill/quill.js"></script>
-  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script> --}}
-
-  <!-- Template Main JS File -->
-  {{-- <script src="assets/js/main.js"></script> --}}
+     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
 
   <script>
     var deleteModal = document.getElementById('deleteModal');
@@ -28,3 +20,7 @@
     });
     </script>
   <script src="{{ asset('js/main.js')}}"></script>
+
+  <script>
+    let table = new DataTable('#usersTable');
+</script>

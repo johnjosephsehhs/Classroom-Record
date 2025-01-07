@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -49,9 +49,17 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'img' => ['nullable', 'mimes:jpg,jpeg,png', 'max:6048'], // 2MB max for the image file
+            'first_name' => ['required', 'string', 'max:255'],
+            'middle_name' => ['nullable', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'student_id' => ['nullable', 'string', 'max:255'],
+            'age' => ['nullable', 'integer'],
+            'course' => ['nullable', 'string', 'max:255'],
+            'year' => ['nullable', 'string'],
+            'address' => ['nullable', 'string'],
         ]);
     }
 
@@ -63,10 +71,36 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $imagePath = null;
+            if (isset($data['img'])) {
+                // Access the image file from the data array (assuming the 'img' field is part of the form data)
+                $imageFile = $data['img'];
+                
+                // Get the original file name without extension
+                $originalName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                
+                // Create a new filename using the original name and a timestamp
+                $fileName = $originalName . "_" . time() . '.' . $imageFile->getClientOriginalExtension();
+                
+                // Store the image in the 'public/upload/images' folder and get the path
+                $imagePath = $imageFile->storeAs('public/upload/images', $fileName);
+            }
+    
+
+
         return User::create([
-            'name' => $data['name'],
+            'img' => $imagePath ? basename($imagePath) : null,
+            'first_name' => $data['first_name'],
+            'middle_name' => $data['middle_name'] ?? null,  // If middle_name is not provided, set it to null
+            'last_name' => $data['last_name'],
+            'role' => $data['role'] ?? 3,  // Default role is 3 if not provided
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'student_id' => $data['student_id'] ?? null,  // Set nullable fields to null if not provided
+            'age' => $data['age'] ?? null,
+            'course' => $data['course'] ?? null,
+            'year' => $data['year'] ?? null,
+            'address' => $data['address'] ?? null,
         ]);
     }
 }

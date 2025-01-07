@@ -1,104 +1,83 @@
 @extends('admin.admin')
 
 @section('content')
-{{-- <div class="row">
-    <!-- Project Card Example -->
-    <div class="card shadow mb-4" id="dashboard-page" data-aos="zoom-in-left" data-aos-delay="100" data-aos-duration="500" data-aos-anchor-placement="bottom-bottom">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000" data-aos-anchor-placement="bottom-bottom">Welcome to my Duty Diary Dashboard</h6>
+
+    <div class="card mt-2">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <h1><i class="fa fa-solid fa-users mt-2"></i> List of Students</h1>
+                </div>
+            </div>
         </div>
         <div class="card-body">
-            <h4 class="small font-weight-bold" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000" data-aos-anchor-placement="bottom-bottom">My Skills in Laravel!<span
-                    class="float-right">20%</span></h4>
-            <div class="progress mb-4">
-                <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                    aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <h4 class="small font-weight-bold" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000" data-aos-anchor-placement="bottom-bottom">My Brain in Logic!<span
-                    class="float-right">40%</span></h4>
-            <div class="progress mb-4">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                    aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <h4 class="small font-weight-bold" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000" data-aos-anchor-placement="bottom-bottom">My Skills in Database!<span
-                    class="float-right">60%</span></h4>
-            <div class="progress mb-4">
-                <div class="progress-bar" role="progressbar" style="width: 60%"
-                    aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <h4 class="small font-weight-bold" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000" data-aos-anchor-placement="bottom-bottom">My Brain Everyday!<span
-                    class="float-right">80%</span></h4>
-            <div class="progress mb-4">
-                <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                    aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <h4 class="small font-weight-bold" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000" data-aos-anchor-placement="bottom-bottom">Snack Time!<span
-                    class="float-right">Complete!</span></h4>
-            <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                    aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="table-responsive">
+                <table class="table table-sm table-hover table-stripped table-column" id="UsersTable">
+                  
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Address</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Course</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTable">
+                       
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 
+   
+    
 
-     <!-- Content Row -->
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const corsProxy = "https://api.allorigins.win/get?url=";
+        const apiUrl = encodeURIComponent("https://freetestapi.com/api/v1/students");
+        
+        fetch(corsProxy + apiUrl)
+            .then((res) => res.json())
+            .then((data) => {
+                const users = JSON.parse(data.contents); // Parse the 'contents' field
+                console.log(users);
 
-         <!-- Earnings (Monthly) Card Example -->
-         <div class="col-xl-3 col-md-6 mb-4" data-aos="zoom-in-left" data-aos-delay="150" data-aos-duration="1000" data-aos-anchor-placement="bottom-bottom">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Documentations</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"> example </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                for (let i = 0; i < users.length; i++) {
+                    const address = users[i].address ? users[i].address.street : "N/A";
+                    const course = users[i].courses && users[i].courses.length > 0 ? users[i].courses[0] : "N/A";
 
-     <!-- Earnings (Monthly) Card Example -->
-     <div class="col-xl-3 col-md-6 mb-4" data-aos="zoom-in-left" data-aos-delay="150" data-aos-duration="1000" data-aos-anchor-placement="bottom-bottom">
-        <div class="card border-left-primary shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Approval Requests</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"> example</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                    var row = "<tr>" +
+                   
+                    
+                        "<td>" + users[i].id + "</td>" +
+                        "<td>" + users[i].name + "</td>" +
+                        "<td>" + users[i].age + "</td>" +
+                        "<td>" + users[i].gender + "</td>" +
+                        "<td>" + users[i].address + "</td>" +
+                        "<td>" + users[i].email + "</td>" +
+                        "<td>" + users[i].phone + "</td>" +
+                        "<td>" + users[i].course + "</td>" +
+                        "<td>" +
+                           `<a href="" class='editUser btn btn-primary btn-sm' title='Edit Button'><i class='fa fa-solid fa-eye'></i> </a> ` + 
+                            `<a href="" class='editUser btn btn-warning btn-sm' title='Edit Button'><i class='fa fa-solid fa-edit'></i> </a> ` +
+                            `<a class='deleteUser btn btn-danger btn-sm' data-user-id=''  title='Delete Button' ><i class='fa fa-solid fa-trash'></i> </a>` +
+                        "</td>" +
+                        "</tr>";
+                    document.getElementById('usersTable').innerHTML += row;
+                }
+            })
+            .catch((error) => console.log('Error fetching data:', error));
+    });
 
-       <!-- Earnings (Monthly) Card Example -->
-       <div class="col-xl-3 col-md-6 mb-4" data-aos="zoom-in-left" data-aos-delay="150" data-aos-duration="1000" data-aos-anchor-placement="bottom-bottom">
-        <div class="card border-left-primary shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Users</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"> example</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div> --}}
 
-    <!-- Content Row -->
+</script>
+
 
 @endsection

@@ -22,7 +22,7 @@
             <h1>Users Table</h1>
             <a href="{{ route('users.create') }}" class="btn btn-primary mb-3">Add New User</a>
         
-            <table class="table table-bordered">
+            <table class="table table-bordered" id="usersTable">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -54,12 +54,15 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-primary">
-                                <i class="fas fa-eye"></i>Show
+                            <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-primary mb-1">
+                                <i class="fas fa-eye"></i>
                             </a>
-                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i>Edit</a>
-                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteUserModal" data-id="{{ $user->id }}">
+                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm mb-1"><i class="fas fa-edit"></i></a>
+                            <!-- <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteUserModal" data-id="{{ $user->id }}">
                                 <i class="fas fa-trash"></i>Delete
+                            </button> -->
+                            <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete({{ $user->id }})">
+                                        <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>
@@ -67,25 +70,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="deleteModalLabel">Delete User</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  Are you sure you want to delete this user? This action cannot be undone.
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
-                  <form id="deleteForm" method="POST" action="{{ route('users.destroy', $user->id) }}" style="display:inline-block;">
-                      @csrf
-                      @method('DELETE')
-                      <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
+
+@include('admin.users.partials.script')
+
 @endsection

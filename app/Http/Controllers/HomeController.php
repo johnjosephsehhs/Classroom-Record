@@ -34,7 +34,11 @@ class HomeController extends Controller
             $userRole = Auth::user()->role;
             $userImg = Auth::user()->img;
 
-            Session::put('USERIMG', 'upload/images/' . $userImg);
+            if (empty($userImg)) {
+                Session::put('USERIMG', NULL);  
+            } else {
+                Session::put('USERIMG', 'upload/images/' . $userImg);
+            }
             Session::put('USERNAME', $userName);
             Session::put('USERROLE', $userRole);
         }
