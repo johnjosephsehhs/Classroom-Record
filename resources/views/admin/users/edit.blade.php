@@ -90,7 +90,7 @@
         if (this.value == '3') {
             studentFields.style.display = 'block'; 
         } else {
-            studentFields.style.display = 'none'; 
+            studentFields.style.display = 'none';
         }
     });
 </script>

@@ -55,7 +55,8 @@
                         <select class="form-control" id="course" name="course" required>
                             <option value="BSIT">Information Technology</option>
                             <option value="BEED">Elementary Education</option>
-                            <option value="BSED">Math</option>
+                            <option value="BSED">BSED Mathematics</option>
+                            <option value="BSED">BSED Social Studies</option>
                         </select>
                     </div>
 
