@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('student_id')->nullable()->unique(); 
             $table->integer('age')->nullable();
             $table->string('course')->nullable();  
+            $table->string('subjects')->nullable();  
             $table->string('year')->nullable(); 
             $table->text('address')->nullable(); 
             $table->timestamp('email_verified_at')->nullable();

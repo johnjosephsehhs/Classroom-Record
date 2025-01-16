@@ -4,9 +4,25 @@
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
         <h1 class="text-muted">Information</h1>
-        <a class="btn btn-secondary btn-sm ml-auto" href="{{ $userRole == 1 || $userRole == 2 ? '/students-information' : '/dashboard' }}">
-            <i class="fa-solid fa-backward mr-1"></i>Back
-        </a>
+        
+        <div class="btn-group">
+            <a class="btn btn-primary btn-sm mr-2 edit-student-btn"  data-bs-toggle="modal"  data-bs-target="#editStudent"  
+            data-id="{{ $student->id }}" 
+            data-first_name="{{ $student->first_name }}" 
+            data-middle_name="{{ $student->middle_name }}" 
+            data-last_name="{{ $student->last_name }}" 
+            data-email="{{ $student->email }}"
+            data-student_id="{{ $student->student_id }}"
+            data-age="{{ $student->age }}"
+            data-course="{{ $student->course }}"
+            data-year="{{ $student->year }}"
+            data-address="{{ $student->address }}">
+                <i class="fa-solid fa-pencil-alt"></i> Edit
+            </a>
+            <a class="btn btn-secondary btn-sm" href="{{ $userRole == 1 || $userRole == 2 ? '/students-information' : '/dashboard' }}">
+                <i class="fa-solid fa-backward"></i> Back
+            </a>
+        </div>
     </div>
 
     <div class="card-body">
@@ -50,10 +66,21 @@
                 <div class="col-9 font-weight-bold">{{ $student->course }}</div>
             </div>
             <div class="row pl-2">
+                <div class="col-3">Subject:</div>
+                <div class="col-9 font-weight-bold">{{ $student->subjects }}</div>
+            </div>
+            <div class="row pl-2">
                 <div class="col-3">Year:</div>
                 <div class="col-9 font-weight-bold">{{ $student->year }}</div>
             </div>
         </div>
     </div>
 </div>
+
+
+
+
+@include('admin.students-information.partials.modal')
+@include('admin.students-information.partials.scripts')
+
 @endsection
