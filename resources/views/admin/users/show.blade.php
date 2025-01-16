@@ -38,6 +38,8 @@
                         <hr>
                         <h4><strong>Course: </strong>{{ $user->course }}</h4>
                         <hr>
+                        <h4><strong>Subject: </strong>{{ $user->subjects }}</h4>
+                        <hr>
                         <h4><strong>Year: </strong>{{ $user->year }}</h4>
                         <hr>
                         <h4><strong>Address: </strong>{{ $user->address }}</h4>

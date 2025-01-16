@@ -78,7 +78,7 @@
                 <input type="text" class="form-control" id="address" name="address" value="{{ old('address', $user->address) }}">
             </div>
             
-            <button type="submit" class="mt-2 btn btn-primary btn-sm">Update</button>
+            <button type="submit" class="mt-2 btn btn-success btn-sm">Update</button>
             <a href="{{ route('users.index') }}" class="mt-2 btn btn-secondary btn-sm">Cancel</a>
         </form>
     </div>

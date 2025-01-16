@@ -46,7 +46,7 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'img' => 'required|file|max:9024|mimes:jpeg,png',
+            'img' => 'nullable|file|max:9024|mimes:jpeg,png',
             'first_name' => 'required',
             'middle_name' => 'required',
             'last_name' => 'required',
@@ -133,7 +133,7 @@ class UsersController extends Controller
     
        
         $validated = $request->validate([
-            'img' => 'required|file|max:9024|mimes:jpeg,png',
+            'img' => 'nullable|file|max:9024|mimes:jpeg,png',
             'first_name' => 'required',
             'middle_name' => 'nullable',
             'last_name' => 'required',
@@ -212,12 +212,7 @@ class UsersController extends Controller
     }
 
 
-    public function list()
-    {
-        $users = User::all();
-
-        return response()->json($users);
-    }
+  
 
 
 }

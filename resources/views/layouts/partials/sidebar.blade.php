@@ -11,14 +11,22 @@
         </a>
       </li><!-- End Dashboard Nav -->
       @if(Session::get('USERROLE') == 1)
-        <li class="nav-item"   {{ request()->routeIs('users.index') || request()->routeIs('users.create') || request()->routeIs('users.edit') || request()->routeIs('users.show') ? 'active' : '' }}>
-          <a class="nav-link" href="{{ route('users.index')}}">
-            <i class="fas fa-solid fa-user"></i>
-            <span>User</span>
-          </a>
-        </li>
+          <li class="nav-item"   {{ request()->routeIs('users.index') || request()->routeIs('users.create') || request()->routeIs('users.edit') || request()->routeIs('users.show') ? 'active' : '' }}>
+            <a class="nav-link" href="{{ route('users.index')}}">
+              <i class="fas fa-solid fa-users"></i>
+              <span>User</span>
+            </a>
+          </li>
       @endif
 
+      @if(Session::get('USERROLE') == 1 || Session::get('USERROLE') == 2)
+          <li class="nav-item"   {{ request()->routeIs('teachers.index') || request()->routeIs('teachers.create') || request()->routeIs('teachers.edit') || request()->routeIs('teachers.show') ? 'active' : '' }}>
+            <a class="nav-link" href="{{ route('teachers.index')}}">
+              <i class="fas fa-solid fa-users"></i>
+              <span>Teacher</span>
+            </a>
+          </li>
+      @endif
       
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">

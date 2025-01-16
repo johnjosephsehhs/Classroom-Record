@@ -24,6 +24,7 @@ class StudentSeeder extends Seeder
             'middle_name' => 'S',
             'last_name' => 'Student',
             'role' => 3,
+            'student_id' => 12345,
             'email' => 'student@example.com',
             'password' => Hash::make('student123'),  
         ]);
