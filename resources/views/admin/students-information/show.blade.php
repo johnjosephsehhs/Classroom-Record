@@ -32,7 +32,10 @@
               @if ($student->role == 3 && $student->img) 
               <div class="row pl-2">
                   <div class="col-9">
-                      <img src="{{ Storage::url('upload/images/' . $student->img) }}" class="img-profile rounded-circle w-25" alt="Student Image">
+                      <!-- <img src="{{ Storage::url('upload/images/' . $student->img) }}" class="img-profile rounded-circle w-25" alt="Student Image"> -->
+                      <a href="{{ Storage::url('upload/images/' . $student->img) }}" data-lightbox="gallery" data-title="My Profile">
+                                <img src="{{ Storage::url('upload/images/' . $student->img) }}" alt="User Image" class="img-fluid" width="200">
+                        </a>
                   </div>
               </div>
           @else

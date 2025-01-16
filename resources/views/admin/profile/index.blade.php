@@ -14,7 +14,10 @@
                     @if ($user->img)
                         <div class="text-center mb-3">
                             <strong>Profile Picture:</strong><br>
-                            <img src="{{ Storage::url('upload/images/' . $user->img) }}" alt="User Image" class="img-fluid" width="200">
+                            <!-- <img src="{{ Storage::url('upload/images/' . $user->img) }}" alt="User Image" class="img-fluid" width="200"> -->
+                            <a href="{{ Storage::url('upload/images/' . $user->img) }}" data-lightbox="gallery" data-title="My Profile">
+                                <img src="{{ Storage::url('upload/images/' . $user->img) }}" alt="User Image" class="img-fluid" width="200">
+                        </a>
                         </div>
                     @endif
             

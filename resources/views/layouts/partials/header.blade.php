@@ -29,11 +29,15 @@
     <!-- This is CDN of Sweet alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>W
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  
+   <!-- This is from Lightbox -->
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
 
   <link href="{{ asset('css/main-style.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ 
+  <!-- This is CDN scripts from lightbox -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
  
  
 </head>

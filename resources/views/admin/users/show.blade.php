@@ -23,7 +23,11 @@
                         @if ($user->img) 
                             <div>
                                 <strong>Profile Picture:</strong>
+                                <!-- <img src="{{ Storage::url('upload/images/' . $user->img) }}" alt="User Image" data-lightbox="gallery" data-title="My caption" class="img-fluid" width="200"> -->
+                                 <!-- Link around the image to trigger Lightbox -->
+                                <a href="{{ Storage::url('upload/images/' . $user->img) }}" data-lightbox="gallery" data-title="My Profile">
                                 <img src="{{ Storage::url('upload/images/' . $user->img) }}" alt="User Image" class="img-fluid" width="200">
+                                </a>
                             </div>
                         @endif
                         <h4><strong>Student ID: </strong>{{ $user->student_id }}</h4>
