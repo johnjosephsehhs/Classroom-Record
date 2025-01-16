@@ -78,7 +78,7 @@ class RegisterController extends Controller
                 
                 // Get the original file name without extension
                 $originalName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                
+
                 // Create a new filename using the original name and a timestamp
                 $fileName = $originalName . "_" . time() . '.' . $imageFile->getClientOriginalExtension();
                 

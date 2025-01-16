@@ -69,7 +69,8 @@ class StudentsInformationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id); 
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -81,8 +82,53 @@ class StudentsInformationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Find the user (student)
+        $user = User::findOrFail($id);
+
+        // Validate incoming request
+        $validated = $request->validate([
+            'img' => 'nullable|file|max:9024|mimes:jpeg,png',
+            'first_name' => 'required',
+            'middle_name' => 'nullable',
+            'last_name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'student_id' => 'nullable|unique:users,student_id,' . $user->id,
+            'age' => 'nullable|integer',
+            'course' => 'nullable|string',
+            'year' => 'nullable|string',
+            'address' => 'nullable|string',
+        ]);
+
+        // Update general information
+        $user->first_name = $request->first_name;
+        $user->middle_name = $request->middle_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+
+        // Handle file upload if present
+        if ($request->hasFile('img')) {
+            $imageFile = $request->file('img');
+            $originalName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $fileName = $originalName . "_" . time() . '.' . $imageFile->getClientOriginalExtension();
+            $path = $imageFile->storeAs('public/upload/images', $fileName);
+            $user->img = $fileName; // Save the image filename
+        }
+
+        // Update student-specific fields if provided
+        $user->student_id = $request->student_id ?? $user->student_id;
+        $user->age = $request->age ?? $user->age;
+        $user->course = $request->course ?? $user->course;
+        $user->year = $request->year ?? $user->year;
+        $user->address = $request->address ?? $user->address;
+
+        // Save the user data
+        $user->save();
+
+        // Return a response
+        return view('admin.dashboard')->with('success', 'User updated successfully!');
     }
+
+    
 
     /**
      * Remove the specified resource from storage.

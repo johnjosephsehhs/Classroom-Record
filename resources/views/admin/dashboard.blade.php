@@ -1,7 +1,7 @@
 @extends('admin.admin')
 
 @section('content')
-
+ 
     <div class="card mt-2">
         <div class="card-header">
             <div class="row">
@@ -33,7 +33,7 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div> 
 
    
     

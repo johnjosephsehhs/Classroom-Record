@@ -6,6 +6,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentsInformationController;
+use App\Http\Controllers\TeachersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,8 @@ Route::resource('profile', ProfileController::class);
 //Students
 Route::get('/students-information/{id}', [StudentsInformationController::class, 'show'])->name('students.show');
 Route::resource('/students-information', StudentsInformationController::class);
+Route::put('/students-information/{id}', [StudentsInformationController::class, 'update'])->name('students.update');
+
+//Teachers
+Route::resource('/teachers', TeachersController::class);
+
