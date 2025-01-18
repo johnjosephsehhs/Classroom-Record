@@ -20,7 +20,7 @@
             @endif
 
             <div class="container">
-                <caption>Teachers Table</caption>
+                <caption>Teachers Tables</caption>
                 
                 <!-- Wrap the table inside a table-responsive div for mobile scrolling -->
                 <div class="table-responsive">
